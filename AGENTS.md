@@ -25,9 +25,18 @@ Read first: `experiments/grmc/docs/HANDOVER.md` and `DESIGN_PRINCIPLES.md`.
 
 ## How to work here
 
-- **Lab-level changes** (this repo): README, docs, scripts, experiment index.  
+- **Lab-level changes** (this repo): README, docs, journal, seeds, scripts, experiment index.  
 - **GRMC changes**: commit and push inside `experiments/grmc` (its own `origin`).  
 - Do not vendor a full copy of GRMC into main without an explicit request.
+- Prefer `python3 tools/labctl.py` for journal → memory sync; do not auto-approve graph writes.
+- When the user says “お任せ”, continue building lab ops and docs; avoid unsafe GRMC graph mutations.
+
+## Journal → memory
+
+```bash
+python3 tools/labctl.py inbox-add -t "title" -b "note"
+python3 tools/labctl.py seed-grmc --all --reflect   # still needs human approve for graph
+```
 
 ## Default install path for GRMC data
 

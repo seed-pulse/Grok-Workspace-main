@@ -72,14 +72,27 @@ GRMC の安全ルール（変更しない）:
 
 ---
 
-## 便利コマンド（Makefile）
+## 便利コマンド
 
 ```bash
-make setup      # GRMC を clone（既存なら skip）
-make update     # GRMC を pull
-make test-grmc  # GRMC の pytest
-make status     # ラボ + grmc status
-make help
+make setup         # GRMC submodule init
+make update        # GRMC pull
+make install-grmc  # pip install -e
+make test-grmc
+make doctor        # ラボ健全性
+make status        # lab + grmc status
+make seed-grmc     # journal/seeds → GRMC ingest
+make memory-sync   # seed + reflect（グラフは書かない）
+```
+
+`labctl`（依存ゼロ）:
+
+```bash
+python3 tools/labctl.py status
+python3 tools/labctl.py inbox-add -t "題" -b "本文"
+python3 tools/labctl.py log "セッションメモ"
+python3 tools/labctl.py seed-grmc --all --reflect
+python3 tools/labctl.py new-experiment my-idea
 ```
 
 ---
@@ -89,18 +102,18 @@ make help
 ```
 Grok-Workspace-main/
 ├── README.md
-├── AGENTS.md              # エージェント向け規約
+├── AGENTS.md
 ├── Makefile
-├── docs/
-│   ├── START_HERE.md
-│   └── LAB_MAP.md
+├── docs/           START_HERE, LAB_MAP, GROK_WANTS
+├── journal/        inbox, questions, decisions, self_model
+├── seeds/          GRMC 初期エピソード用 markdown
+├── templates/      新実験 README
+├── tools/labctl.py ラボ操作用 CLI（stdlib）
 ├── experiments/
 │   ├── README.md
-│   └── grmc/              # setup 後に出現（gitignore しない方針は scripts 参照）
+│   └── grmc/       submodule → Grok-Workspace1
 ├── scripts/
-│   ├── setup_lab.sh
-│   └── update_experiments.sh
-└── .gitignore
+└── .lab_data/      ローカル GRMC データ（gitignore）
 ```
 
 `experiments/grmc` は **git submodule**（[Grok-Workspace1](https://github.com/seed-pulse/Grok-Workspace1)）です。  

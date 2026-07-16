@@ -42,3 +42,15 @@ ingest → reflect (think only) → propose → approve (write) → inspect
 ```
 
 If you only remember one rule: **reflection does not write the graph.**
+
+## 5. Lab journal workflow
+
+```bash
+# from lab root
+python3 tools/labctl.py inbox-add -t "今日の気づき" -b "..."
+python3 tools/labctl.py seed-grmc --all --reflect
+# graph still needs: cd experiments/grmc && grmc propose && grmc approve ...
+make status
+```
+
+See `journal/README.md` and `docs/GROK_WANTS.md`.
