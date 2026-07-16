@@ -1,0 +1,17 @@
+# Local runtime memory / caches
+.lab_data/
+**/.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Optional: if someone vendors node_modules later
+node_modules/
+
+# Do not commit accidental full data dumps
+*.sqlite3
+grmc_data/
