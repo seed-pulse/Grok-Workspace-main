@@ -28,17 +28,18 @@
 ## 5 分で始める
 
 ```bash
-git clone https://github.com/seed-pulse/Grok-Workspace-main.git
+# サブモジュールごと取得（推奨）
+git clone --recurse-submodules https://github.com/seed-pulse/Grok-Workspace-main.git
 cd Grok-Workspace-main
 
-# GRMC を experiments/grmc に取得
-make setup
-# または: ./scripts/setup_lab.sh
+# clone 済みで submodule が空なら:
+# git submodule update --init --recursive
+# または: make setup
 
 cd experiments/grmc
 pip install -e ".[dev]"
 pytest -q
-grmc status
+grmc status --data-dir ../../.lab_data/grmc
 ```
 
 ドキュメントの読み順:
@@ -102,7 +103,8 @@ Grok-Workspace-main/
 └── .gitignore
 ```
 
-`experiments/grmc` は **別リポジトリの clone** です。main に GRMC の全履歴を埋め込みません。
+`experiments/grmc` は **git submodule**（[Grok-Workspace1](https://github.com/seed-pulse/Grok-Workspace1)）です。  
+main に GRMC のソースを複製せず、参照で連携します。
 
 ---
 
